@@ -7,8 +7,6 @@ projects[drupal][version] = "6.22"
 
 ; ======= Modules ======= 
 
-projects[devel]
-
 projects[admin_menu][version] = "1.6"
 
 projects[backup_migrate][version] = "2.4"
@@ -18,6 +16,8 @@ projects[better_formats][version] = "1.2"
 projects[ctools][version] = "1.8"
 
 projects[cck][version] = "2.9"
+
+projects[devel][version] = "1.24"
 
 projects[diff][version] = "2.1"
 
@@ -70,7 +70,8 @@ projects[wysiwyg][version] = "2.3"
 
 projects[wysiwyg_filter][version] = "1.5"
 
-projects[install_profile_api]
+projects[install_profile_api][version] = "2.1"
+
 
 ; ======= Features ======= 
 
@@ -130,6 +131,6 @@ libraries[ckeditor][destination] = "libraries"
 ; projects[stanford][download][type] = "git"
 ; projects[stanford][download][url] = "git@github.com:mistermarco/Stanford-Drupal-Profile.git"
 
-projects[su_wysiwyg][type] = "profile"
-projects[su_wysiwyg][download][type] = "git"
-projects[su_wysiwyg][download][url] = "git@github.com:Stanford/su_wysiwyg_profile.git"
+projects[su_wysiwyg_profile][type] = "profile"
+projects[su_wysiwyg_profile][download][type] = "git"
+projects[su_wysiwyg_profile][download][url] = "git@github.com:Stanford/su_wysiwyg_profile.git"
