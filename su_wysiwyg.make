@@ -43,7 +43,6 @@ projects[imagefield_tokens][version] = "1.0"
 
 projects[imce][version] = "2.1"
 
-projects[imce_tools][subdir] = "sites/all/modules/imce_tools/modules"
 projects[imce_tools][version] = "1.1"
 
 projects[imce_wysiwyg][version] = "1.1"
