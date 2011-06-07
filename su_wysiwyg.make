@@ -91,8 +91,6 @@ projects[acquia_prosper][version] = "1.1"
 
 ; ======= Libraries ======= 
 
-projects[libraries][subdir] = "libraries"
-
 ; TinyMCE 3.2.7
 ;libraries[tinymce][download][type] = "get"
 ;libraries[tinymce][download][url] = "http://downloads.sourceforge.net/project/tinymce/TinyMCE/3.2.7/tinymce_3_2_7.zip"
