@@ -10,16 +10,19 @@
  */
 function su_wysiwyg_profile_modules() {
     $modules = array(
+      
       // core modules
       'block', 'comment', 'dblog', 'filter', 'help', 'menu', 'node', 'system', 
       'taxonomy', 'user',
 
       // contrib
-      'diff', 'skinr', 'backup_migrate', 'transliteration',
-      //development
-      'admin_menu','devel', 'devel_generate', 
-      //'features', 'strongarm', 'exportables', 
       'install_profile_api',
+
+      'diff', 'skinr', 'vertical_tabs','backup_migrate', 
+      'transliteration', 'wysiwyg', 'better_formats',
+      
+      //development
+      'admin_menu','devel', 'devel_generate', 'ctools', 'features', 'strongarm', 'exportables', 'wysiwyg_filter',
       
       'su_wysiwyg_tests', 'su_contributor_wysiwyg', 'su_wysiwyg_images',
     );
@@ -61,6 +64,8 @@ function su_wysiwyg_profile_task_list() { }
  */
 function su_wysiwyg_profile_tasks(&$task, $url) {
   
+  // We need to do this for install profile api
+  install_include(su_wysiwyg_profile_modules());
   
   // Perform tasks common to all sites.
   su_wysiwyg_roles_add();
@@ -117,37 +122,37 @@ function su_wysiwyg_profile_tasks(&$task, $url) {
 /**
  * Alter all the installer form.
  */
-// function su_wysiwyg_form_alter(&$form, &$form_state, $form_id) {
-//   switch ($form_id) {
-//     case 'install_configure':
-//     
-//       $form['site_information']['site_name']['#default_value'] = 'Stanford wysiwyg Tests';
-//      
-//       $form['site_information']['site_mail']['#default_value'] = 'webmaster+wysiwyg@ideograph.ca';
-//       $form['admin_account']['account']['name']['#default_value'] = 'admin';
-//       $form['admin_account']['account']['mail']['#default_value'] = 'webmaster+wysiwyg@ideograph.ca';
-//       $form['admin_account']['account']['pass']['#default_value'] = '123';
-//       $form['admin_account']['account']['pass']['#type'] = 'textfield';
-//       $form['admin_account']['account']['pass']['#title'] = t('Password');
-//       $form['admin_account']['account']['pass']['#description'] = t('This password field has been changed to plain text to ease the installation process.');
-//       
-//       // allow setting the default timezone on install
-//       if (function_exists('date_timezone_names') && function_exists('date_timezone_update_site')) {
-//         $form['server_settings']['date_default_timezone']['#access'] = FALSE;
-//         $form['server_settings']['#element_validate'] = array('date_timezone_update_site');
-//         $form['server_settings']['date_default_timezone_name'] = array(
-//           '#type' => 'select',
-//           '#title' => t('Default time zone'),
-//           '#default_value' => NULL,
-//           '#options' => date_timezone_names(FALSE, TRUE),
-//           '#description' => t('Select the default site time zone. If in doubt, choose the timezone that is closest to your location which has the same rules for daylight saving time.'),
-//           '#required' => TRUE,
-//         );
-//       }
-//       break;
-//   }
-// 
-// }
+function su_wysiwyg_form_alter(&$form, &$form_state, $form_id) {
+  switch ($form_id) {
+    case 'install_configure':
+    
+      $form['site_information']['site_name']['#default_value'] = 'Stanford wysiwyg Tests';
+     
+      $form['site_information']['site_mail']['#default_value'] = 'webmaster+wysiwyg@ideograph.ca';
+      $form['admin_account']['account']['name']['#default_value'] = 'root';
+      $form['admin_account']['account']['mail']['#default_value'] = 'webmaster+wysiwyg@ideograph.ca';
+      $form['admin_account']['account']['pass']['#default_value'] = '123';
+      $form['admin_account']['account']['pass']['#type'] = 'textfield';
+      $form['admin_account']['account']['pass']['#title'] = t('Password');
+      $form['admin_account']['account']['pass']['#description'] = t('This password field has been changed to plain text to ease the installation process.');
+      
+      // allow setting the default timezone on install
+      if (function_exists('date_timezone_names') && function_exists('date_timezone_update_site')) {
+        $form['server_settings']['date_default_timezone']['#access'] = FALSE;
+        $form['server_settings']['#element_validate'] = array('date_timezone_update_site');
+        $form['server_settings']['date_default_timezone_name'] = array(
+          '#type' => 'select',
+          '#title' => t('Default time zone'),
+          '#default_value' => NULL,
+          '#options' => date_timezone_names(FALSE, TRUE),
+          '#description' => t('Select the default site time zone. If in doubt, choose the timezone that is closest to your location which has the same rules for daylight saving time.'),
+          '#required' => TRUE,
+        );
+      }
+      break;
+  }
+
+}
 
 /**
  * Set English as default language.
@@ -188,8 +193,8 @@ function su_wysiwyg_roles_add() {
  * Add some basic users with our given roles
  */
 function su_wysiwyg_users_add() {
-  install_add_user('user', 'su_wysiwyg', 'webmaster+user@ideograph.ca');
   install_add_user('admin', 'su_wysiwyg', 'webmaster+admin@ideograph.ca', array('admin'));
+  install_add_user('user', 'su_wysiwyg', 'webmaster+user@ideograph.ca');
   install_add_user('editor', 'su_wysiwyg', 'webmaster+editor@ideograph.ca', array('editor'));
   install_add_user('manager', 'su_wysiwyg', 'webmaster+contributor@ideograph.ca', array('contributor'));
 }
