@@ -261,7 +261,7 @@ function su_wysiwyg_content_add() {
   $node = new stdClass();
   $node->type = 'page';
   $node->title = st('About');
-  $node->body = st("This is a test site for the Stanford WYSIWYG project.");
+  $node->body = st('<p>Welcome to the test site for the Stanford WYSIWYG project.</p><p>Make nodes. Be happy.</p>');
   $node->format = 1;
   $node->status = 1;
   $node->revision = 1;
@@ -271,6 +271,6 @@ function su_wysiwyg_content_add() {
   $node->uid = 4;
   node_save($node);
   // Set site front page to welcome page.
-  //variable_set('site_frontpage', 'node/1');
+  variable_set('site_frontpage', 'node/1');
   
 }
