@@ -94,7 +94,7 @@ function su_wysiwyg_profile_tasks(&$task, $url) {
   // Save theme specific settings.
   drupal_execute('system_theme_settings', $form_state);
   // Set a default footer message.
-  variable_set('site_footer', 'Copyright '. l('Stanford University', 'http://stanford.edu' . ' &copy; ' . date('Y'), array('absolute' => TRUE)));
+  variable_set('site_footer', 'Copyright '. l('Stanford University', 'http://stanford.edu') . ' &copy; ' . date('Y'), array('absolute' => TRUE)));
 
 
   // generate content
